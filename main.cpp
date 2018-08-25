@@ -441,39 +441,46 @@ void hamilton()
 }
 void euler()
 {
-	if (isEmptyGraph()) return;
-	int start = eulerChecker();
-	setTextPrintStyle(TEXT_COLOR);
-	if (start == NOT_EXIST_EULER)
-	{
-		printTextWl("Do thi khong phai la Euler/Nua Euler.");
-		return backToMenu();
-	}
-	if (start == EXIST_EULER) // exist euler cycle
-	{
-		if (!chooseStartVertex(start, "Chon dinh bat dau: ", "Chu trinh euler: ")) return;
-	}
-	else printText("Duong di euler: "); // exist haft euler start already calc in eulerChecker
-	stack s, result;
-	bool gr[MAX_VERTEX][MAX_VERTEX];
-	copyToMutilGraph(gr);
-	s.push(start);
-	int u, v;
-	while (!s.isEmpty())
-	{
-		u = s.get();
-		for (v = 0; v < listv.num; ++v)
-			if (gr[u][v])
-			{
-				s.push(v);
-				gr[u][v] = 0;
-				break;
-			}
-		if (v == listv.num)
-			result.push(s.pop());
-	}
-	showResultStack(result);
-	return backToMenu();
+		
+ /*
+*Code below still has bug, you can implement by 
+*reading this https://math.stackexchange.com/questions/1871065/euler-path-for-directed-graph
+* Happy coding.
+*/
+	MessageBox(hwnd, "Code bi bug khong nen chay", "Thong bao", MB_APPLMODAL | MB_ICONWARNING);
+//	if (isEmptyGraph()) return;
+//	int start = eulerChecker();
+//	setTextPrintStyle(TEXT_COLOR);
+//	if (start == NOT_EXIST_EULER)
+//	{
+//		printTextWl("Do thi khong phai la Euler/Nua Euler.");
+//		return backToMenu();
+//	}
+//	if (start == EXIST_EULER) // exist euler cycle
+//	{
+//		if (!chooseStartVertex(start, "Chon dinh bat dau: ", "Chu trinh euler: ")) return;
+//	}
+//	else printText("Duong di euler: "); // exist haft euler start already calc in eulerChecker
+//	stack s, result;
+//	bool gr[MAX_VERTEX][MAX_VERTEX];
+//	copyToMutilGraph(gr);
+//	s.push(start);
+//	int u, v;
+//	while (!s.isEmpty())
+//	{
+//		u = s.get();
+//		for (v = 0; v < listv.num; ++v)
+//			if (gr[u][v])
+//			{
+//				s.push(v);
+//				gr[u][v] = 0;
+//				break;
+//			}
+//		if (v == listv.num)
+//			result.push(s.pop());
+//	}
+//	showResultStack(result);
+//	return backToMenu();
 }
 void topoSort()
 {
@@ -979,7 +986,7 @@ bool fordbellman(int start, int stop)
 	showResultPathXY(dist, start, stop);
 	return true;
 }
-bool numbering(int *degIn, int *order) //Kahn’s algorithm for Topological Sorting
+bool numbering(int *degIn, int *order) //KahnÂ’s algorithm for Topological Sorting
 {
 	int const &NUM = listv.num;
 	queue q;
